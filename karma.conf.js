@@ -1,5 +1,12 @@
 "use strict";
-const webpackconfig = require('./webpack.config');
+const fs = require("fs");
+let localWebpackConfigFile = `${process.cwd()}/webpack.config`;
+let webpackConfig = {};
+if( fs.existsSync(localWebpackConfigFile) ) {
+  webpackConfig = require(localWebpackConfigFile);
+} else {
+  webpackConfig = require('./webpack.config');
+}
 module.exports = (config) => {
   config.set({
     basePath: './Source',
@@ -12,7 +19,7 @@ module.exports = (config) => {
     preprocessors: {
       '**/*.js': ['webpack']
     },
-    webpack: webpackconfig,
+    webpack: webpackConfig,
     webpackMiddleware: {
       stats: 'errors-only'
     },
