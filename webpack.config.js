@@ -3,7 +3,12 @@ module.exports = {
         rules: [
             {
                 test: /\.js/,
-                loader: 'babel-loader'
+                use: {
+                    loader: 'istanbul-instrumenter-loader',
+                    options: { esModules: true }
+                },
+                enforce: 'post',
+                exclude: /node_modules|\.spec\.js$/                
             }
         ]
     }

@@ -23,7 +23,11 @@ module.exports = (config) => {
     webpackMiddleware: {
       stats: 'errors-only'
     },
-    reporters: ['progress'],
+    reporters: ['progress', 'coverage-istanbul'],
+    coverageIstanbulReporter: {
+      reports: [ 'text-summary' ],
+      fixWebpackSourcePaths: true
+    },    
     port: 9876,
     colors: true,
     logLevel: config.LOG_INFO,
