@@ -1,5 +1,5 @@
 {
-    "name": "javascript.build",
+    "name": "dolittle.javascript.build",
     "version": "1.0.0",
     "description": "Base build pipeline for Dolittle JavaScript projects",
     "main": "index.js",
