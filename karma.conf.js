@@ -1,6 +1,6 @@
 "use strict";
 const fs = require("fs");
-let localWebpackConfigFile = `${process.cwd()}/webpack.config`;
+let localWebpackConfigFile = `${process.cwd()}/webpack.config.js`;
 let webpackConfig = {};
 if( fs.existsSync(localWebpackConfigFile) ) {
   webpackConfig = require(localWebpackConfigFile);
