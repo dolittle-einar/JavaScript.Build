@@ -10,6 +10,7 @@ module.exports = {
                 exclude: /node_modules|\.spec\.js$/                
             },
             
+            /*
             {
                 test: /\.js/,
                 use: {
@@ -18,7 +19,7 @@ module.exports = {
                 },
                 enforce: 'post',
                 exclude: /node_modules|\.spec\.js$/                
-            }
+            }*/
         ]
     }
 };

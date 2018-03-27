@@ -18,7 +18,7 @@ module.exports = (config) => {
     webpackMiddleware: {
       stats: 'errors-only'
     },
-    reporters: ['progress', 'coverage-istanbul'],
+    reporters: ['progress'],
     coverageIstanbulReporter: {
       reports: [ 'text-summary' ],
       fixWebpackSourcePaths: true
@@ -32,3 +32,4 @@ module.exports = (config) => {
     concurrency: Infinity
   })
 };
+// , 'coverage-istanbul'
