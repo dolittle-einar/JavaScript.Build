@@ -1,12 +1,6 @@
 "use strict";
 const fs = require("fs");
-let localWebpackConfigFile = `${process.cwd()}/webpack.config.js`;
-let webpackConfig = {};
-if( fs.existsSync(localWebpackConfigFile) ) {
-  webpackConfig = require(localWebpackConfigFile);
-} else {
-  webpackConfig = require('./webpack.config');
-}
+let webpackConfig = require('./webpack.specs.config');
 module.exports = (config) => {
   config.set({
     basePath: './Source',
