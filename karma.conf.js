@@ -12,7 +12,8 @@ module.exports = (config) => {
     basePath: './Source',
     frameworks: ['mocha', 'chai', 'chai-as-promised'],
     files: [
-      '**/for_*/*.js'
+      '**/for_*/*.js',
+      '**/when_*/*.js'
     ],
     exclude: [
     ],
