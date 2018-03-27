@@ -3,7 +3,7 @@ const fs = require("fs");
 let webpackConfig = require('./webpack.specs.config');
 module.exports = (config) => {
   config.set({
-    basePath: './Source',
+    basePath: './Features',
     frameworks: ['mocha', 'chai', 'chai-as-promised'],
     files: [
       '**/for_*/*.js',
