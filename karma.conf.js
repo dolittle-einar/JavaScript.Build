@@ -2,7 +2,7 @@
 const fs = require("fs");
 const path = require('path');
 
-const nodeModulesDir = path.resolve(__dirname, 'node_modules');
+const nodeModulesDir = path.resolve('node_modules');
 let webpackConfig = require('./webpack.specs.config');
 module.exports = (config) => {
   config.set({
