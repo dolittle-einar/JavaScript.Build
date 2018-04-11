@@ -7,7 +7,6 @@ module.exports = {
                     loader: 'babel-loader'
                 },
                 enforce: 'post',
-                exclude: /node_modules|\.spec\.js$/                
             },
             
             /*

@@ -1,11 +1,15 @@
 "use strict";
 const fs = require("fs");
+const path = require('path');
+
+const nodeModulesDir = path.resolve(__dirname, 'node_modules');
 let webpackConfig = require('./webpack.specs.config');
 module.exports = (config) => {
   config.set({
     basePath: './Features',
     frameworks: ['mocha', 'chai', 'chai-as-promised'],
     files: [
+      nodeModulesDir+'/babel-polyfill/dist/polyfill.js',
       '**/for_*/*.js',
       '**/when_*/*.js'
     ],
