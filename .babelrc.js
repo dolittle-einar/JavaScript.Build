@@ -7,6 +7,7 @@ module.exports = () => {
         'transform-async-to-generator',
         'transform-object-rest-spread',
         ['transform-runtime', {
+          'helpers': false,
           'polyfill': false,
           'regenerator': true
         }]
