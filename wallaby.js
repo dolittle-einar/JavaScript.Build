@@ -6,7 +6,7 @@ const wallabyWebpack = require('wallaby-webpack');
 
 module.exports = (baseFolder, webpackPostprocessorCallback, wallabySetingsCallback) => {
     return (wallaby) => {
-        let wallabyPostprocessor = wallabyWebpack({
+        let webpackSettings = {
             entryPatterns: ['node_modules/dolittle.javascript.build', `${baseFolder}/**/for_*/*.js`],
             resolve: {
                 modules: [
@@ -30,9 +30,11 @@ module.exports = (baseFolder, webpackPostprocessorCallback, wallabySetingsCallba
                 new DefinePlugin({ AURELIA_WEBPACK_2_0: undefined }),
                 new AureliaPlugin()
             ]*/
-        });
+        };
 
-        if( typeof webpackPostprocessorCallback == 'function' ) webpackPostprocessorCallback(webpackPostprocessorCallback);
+        if( typeof webpackPostprocessorCallback == 'function' ) webpackPostprocessorCallback(webpackSettings);
+
+        let wallabyPostprocessor = wallabyWebpack(webpackSettings);
 
         let babelCompiler = wallaby.compilers.babel(babelConfig);
 
