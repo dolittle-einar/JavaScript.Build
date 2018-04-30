@@ -25,7 +25,7 @@ module.exports = () => {
               'uglify': process.env.NODE_ENV === 'production',
             },
             'loose': true,
-            'modules': process.env.BABEL_TARGET === 'node' ? 'commonjs' : 'umd',
+            'modules': process.env.BABEL_TARGET === 'node' ? 'commonjs' : process.env.PACKAGE_DISTRIBUTION === 'true' ? 'umd' : false,
             'useBuiltIns': true
           }
         ]
