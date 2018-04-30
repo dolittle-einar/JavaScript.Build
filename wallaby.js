@@ -14,6 +14,10 @@ module.exports = (baseFolder, webpackPostprocessorCallback, wallabySetingsCallba
                 ],
                 alias: {}
             },
+            modules: {
+                rules: []
+            },
+            plugins: []
             /*
             module: {
                 rules: [
@@ -28,7 +32,7 @@ module.exports = (baseFolder, webpackPostprocessorCallback, wallabySetingsCallba
             ]*/
         });
 
-        if( typeof webpackSettingsCallback == 'function' ) webpackSettingsCallback(webpackPostprocessorCallback);
+        if( typeof webpackPostprocessorCallback == 'function' ) webpackPostprocessorCallback(webpackPostprocessorCallback);
 
         let babelCompiler = wallaby.compilers.babel(babelConfig);
 
