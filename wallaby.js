@@ -14,7 +14,7 @@ module.exports = (baseFolder, webpackPostprocessorCallback, wallabySetingsCallba
                 ],
                 alias: {}
             },
-            modules: {
+            module: {
                 rules: []
             },
             plugins: []
