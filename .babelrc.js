@@ -5,7 +5,12 @@ module.exports = () => {
         'transform-decorators-legacy',
         'transform-class-properties',
         'transform-async-to-generator',
-        'transform-object-rest-spread'
+        'transform-object-rest-spread',
+        ['transform-runtime', {
+          'polyfill': false,
+          'regenerator': true
+        }]
+        
       ],
       'presets': [
         [
