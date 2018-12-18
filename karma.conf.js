@@ -9,7 +9,7 @@ module.exports = (config) => {
     basePath: './Features',
     frameworks: ['mocha', 'chai', 'chai-as-promised'],
     files: [
-      nodeModulesDir+'/babel-polyfill/dist/polyfill.js',
+      nodeModulesDir+'/@babel/polyfill/dist/polyfill.js',
       '**/for_*/*.js',
       '**/when_*/*.js'
     ],
