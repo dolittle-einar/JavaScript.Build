@@ -5,8 +5,7 @@ module.exports = () => {
         "@babel/plugin-proposal-class-properties",
         ["@babel/plugin-proposal-decorators", {"legacy": true}],
         "@babel/plugin-syntax-flow",
-        "@babel/plugin-transform-flow-strip-types"
-
+        "@babel/plugin-transform-flow-strip-types",
         ["@babel/plugin-transform-runtime",
           {
             "corejs": false,
@@ -26,11 +25,11 @@ module.exports = () => {
                 'last 2 versions',
                 'not ie <= 11'
               ],
-              'uglify': process.env.NODE_ENV === 'production',
             },
+            'forceAllTransforms': process.env.NODE_ENV === 'production',
             'loose': true,
-            'modules': process.env.BABEL_TARGET === 'node' || process.env.PACKAGE_DISTRIBUTION === 'true' ? 'umd' : false,
-            'useBuiltIns': true
+            'modules': process.env.BABEL_TARGET === 'node'? 'cjs' : process.env.PACKAGE_DISTRIBUTION === 'true' ? 'umd' : false,
+            'useBuiltIns': "usage"
           }
         ]
       ]
