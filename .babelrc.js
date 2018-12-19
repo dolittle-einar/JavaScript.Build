@@ -2,20 +2,22 @@
 module.exports = () => {
     return {
       'plugins': [
-        'transform-decorators-legacy',
-        'transform-class-properties',
-        'transform-async-to-generator',
-        'transform-object-rest-spread',
-        ['transform-runtime', {
-          'helpers': false,
-          'polyfill': false,
-          'regenerator': true
-        }]
-        
+        "@babel/plugin-proposal-class-properties",
+        ["@babel/plugin-proposal-decorators", {"legacy": true}],
+        "@babel/plugin-syntax-flow",
+        "@babel/plugin-transform-flow-comments",
+        ["@babel/plugin-transform-runtime",
+          {
+            "corejs": false,
+            "helpers": false,
+            "regenerator": true,
+            "useESModules": false
+          }
+        ]
       ],
       'presets': [
         [
-          'env', {
+          "@babel/preset-env", {
             'targets': process.env.BABEL_TARGET === 'node' ? {
               'node': process.env.IN_PROTRACTOR ? '6' : 'current'
             } : {
@@ -23,11 +25,11 @@ module.exports = () => {
                 'last 2 versions',
                 'not ie <= 11'
               ],
-              'uglify': process.env.NODE_ENV === 'production',
             },
+            'forceAllTransforms': process.env.NODE_ENV === 'production',
             'loose': true,
-            'modules': process.env.BABEL_TARGET === 'node' ? 'commonjs' : process.env.PACKAGE_DISTRIBUTION === 'true' ? 'umd' : false,
-            'useBuiltIns': true
+            'modules': process.env.BABEL_TARGET === 'node'? 'cjs' : process.env.PACKAGE_DISTRIBUTION === 'true' ? 'umd' : false,
+            'useBuiltIns': "usage"
           }
         ]
       ]
