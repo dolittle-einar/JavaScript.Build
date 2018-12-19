@@ -5,7 +5,7 @@ module.exports = () => {
         "@babel/plugin-proposal-class-properties",
         ["@babel/plugin-proposal-decorators", {"legacy": true}],
         "@babel/plugin-syntax-flow",
-        "@babel/plugin-transform-flow-strip-comments",
+        "@babel/plugin-transform-flow-comments",
         ["@babel/plugin-transform-runtime",
           {
             "corejs": false,
