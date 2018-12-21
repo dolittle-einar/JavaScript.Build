@@ -31,11 +31,11 @@ module.exports = (baseFolder, webpackPostprocessorCallback, wallabySetingsCallba
                 { pattern: 'node_modules/chai/chai.js', instrument: false },
                 { pattern: 'node_modules/chai-as-promised/chai-as-promised.js', instrument: false },
                 { pattern: "node_modules/sinon/pkg/sinon.js", instrument: false },
-                { pattern: `./${baseFolder}/**/for_*/*.js`, ignore: true },
-                { pattern: `./${baseFolder}/**/*.js`, load: false }              
+                { pattern: `${baseFolder}/**/for_*/*.js`, ignore: true },
+                { pattern: `${baseFolder}/**/*.js`, load: false }              
             ],
             tests: [
-                { pattern: `./${baseFolder}/**/for_*/*.js`, load: false }
+                { pattern: `${baseFolder}/**/for_*/*.js`, load: false }
             ],
             env: {
                 kind: 'electron'
