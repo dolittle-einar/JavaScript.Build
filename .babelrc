@@ -1,0 +1,17 @@
+{
+  "plugins": [
+    ["@babel/plugin-proposal-decorators", {"legacy": true}],
+    "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-transform-modules-commonjs",
+    "@babel/plugin-syntax-flow",
+    "@babel/plugin-transform-flow-comments",
+    ["@babel/plugin-transform-runtime",
+      {
+        "corejs": false,
+        "helpers": false,
+        "regenerator": true,
+        "useESModules": false
+      }
+    ]
+  ]
+}

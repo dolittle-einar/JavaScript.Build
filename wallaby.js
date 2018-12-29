@@ -1,58 +1,43 @@
-const babelConfig = require('./.babelrc.js')();
-const path = require('path');
-const wallabyWebpack = require('wallaby-webpack');
+module.exports = function(wallaby) {
+    let babelCompiler = wallaby.compilers.babel({
+        babelrc: true
+    });
+    
+    return {
+        files: [
 
-module.exports = (baseFolder, webpackPostprocessorCallback, wallabySetingsCallback) => {
-    return (wallaby) => {
-        let webpackSettings = {
-            entryPatterns: [`${baseFolder}/**/for_*/*.js`],
-            resolve: {
-                modules: [
-                    path.join(wallaby.projectCacheDir, 'src')
-                ],
-                alias: {}
-            },
-            module: {
-                rules: []
-            },
-            plugins: []
-        };
+            { pattern: 'node_modules/chai/chai.js', instrument: false },
+            { pattern: 'node_modules/chai-as-promised/chai-as-promised.js', instrument: false },
+            { pattern: 'node_modules/sinon/pkg/sinon.js', instrument: false },
+            { pattern: 'node_modules/sinon-chai/lib/sinon-chai.js', instrument: false },
+            { pattern: 'Source/**/for_*/**/*.js', ignore: true },
+            { pattern: 'Source/**/*.js' }
+        ],
+        tests: [
+            { pattern: 'Source/**/for_*/**/*.js' }
+        ],
 
-        if( typeof webpackPostprocessorCallback == 'function' ) webpackPostprocessorCallback(webpackSettings);
+        testFramework: 'mocha',
 
-        let wallabyPostprocessor = wallabyWebpack(webpackSettings);
+        compilers: {
+            '**/*.js': babelCompiler
+        },
 
-        let babelCompiler = wallaby.compilers.babel(babelConfig);
+        env: {
+            type: 'node'
+        },
 
-        let wallabySettings = {
-            //debug: true,
-            //reportConsoleErrorAsError: true,
-            files: [
-                { pattern: 'node_modules/chai/chai.js', instrument: false },
-                { pattern: 'node_modules/chai-as-promised/chai-as-promised.js', instrument: false },
-                { pattern: "node_modules/sinon/pkg/sinon.js", instrument: false },
-                { pattern: `${baseFolder}/**/for_*/*.js`, ignore: true },
-                { pattern: `${baseFolder}/**/*.js`, load: false }              
-            ],
-            tests: [
-                { pattern: `${baseFolder}/**/for_*/*.js`, load: false }
-            ],
-            env: {
-                kind: 'electron'
-            },
-            compilers: {
-                '**/*.js': babelCompiler
-            },
-            postprocessor: wallabyPostprocessor,
-            setup: () => {
-                window.expect = chai.expect;
-                let should = chai.should();
-                window.__moduleBundler.loadTests();
-            }
-        };
+        setup: () => {
+            global.expect = chai.expect;
+            let should = chai.should();
+            global.sinon = require('sinon');
+            let sinonChai = require('sinon-chai');
+            chai.use(sinonChai);
 
-        if( typeof wallabySetingsCallback == 'function' ) wallabySetingsCallback(wallabySettings);
+            let winston = require('winston');
+            global.logger = winston.createLogger({
 
-        return wallabySettings;
+            });
+        }
     };
 };
