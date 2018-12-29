@@ -4,4 +4,7 @@
  *--------------------------------------------------------------------------------------------*/
 require('@babel/register');
 var tasks = require('./tasks/index');
-for( var task in tasks ) exports[task] = tasks[task];
+
+module.exports = function(originalExports) {
+    for( var task in tasks ) originalExports[task] = tasks[task];
+}
