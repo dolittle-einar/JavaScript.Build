@@ -46,19 +46,25 @@ function loadConfig(config) {
     }
 }
 
+/**
+ * Represents a system for handling configuration of Babel
+ */
+export class BabelConfig {
+    #baseConfig;
 
-export class babelConfig {
-
+    /**
+     * Initializes a new instance of {babelConfig}
+     */
     constructor(config) {
-        let projectConfig = loadConfig(config);
+        this.#baseConfig = loadConfig(config);
         this.plugins = [];
         this.presets = [];
-        Object.assign(this, projectConfig);
     }
 
-    static getConfigForModuleFormat(config, moduleFormat) {
-        let instance = new babelConfig(config);
-        instance.plugins.push(`@babel/plugin-transform-modules-${moduleFormat}`);
+    getConfigForModuleFormat(moduleFormat) {
+        let config = {};
+        Object.assign(config, projectConfig);
+        config.push(`@babel/plugin-transform-modules-${moduleFormat}`);
         return instance;
     }
 }

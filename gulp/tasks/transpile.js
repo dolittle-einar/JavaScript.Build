@@ -5,7 +5,7 @@
 import gulp from 'gulp';
 import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
-import { Config } from '../Config';
+import {Context } from '../Context';
 import { babelConfig } from '../babelConfig';
 import { sources } from './sources';
 
@@ -16,7 +16,14 @@ export class transpile {
         this._module = module;
     }
 
-    task(config, done) {
+    /**
+     * The actual task for the transpiling
+     * @param {Context} context 
+     * @param {Function} done 
+     */
+    task(context, done) {
+        let config = context.config;
+        let babelConfig = context.babelConfig;
         let module = this._module;
         let destination = `${config.distFolder}/${module}`;
 
@@ -37,12 +44,11 @@ export class transpile {
         done();
     }
 
-    static createTask(module, root) {
+    static createTask(module, context) {
         let moduleTranspiler = new transpile(module);
 
         let task = (done) => {
-            let config = Config.get(root);
-            moduleTranspiler.task(config, done);
+            moduleTranspiler.task(context, done);
         };
         task.displayName = `build:${module}`;
         return task;   

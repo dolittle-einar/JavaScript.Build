@@ -4,15 +4,16 @@
  *--------------------------------------------------------------------------------------------*/
 import gulp from 'gulp';
 import { sources } from './sources';
-import { Config } from '../Config';
+import { Context } from '../Context';
 
 /**
  * Factory function for creating a task that copies files raw to esmodule dist folder
- * @param {string} root Root folder
+ * @param {Context} context The Current build context
+ * @returns {Function} The task
  */
-export function getEsmodulesTask(root) {
+export function getEsmodulesTask(context) {
     let task = (done) => {
-        let config = Config.get(root);
+        let config = context.config;
         let destination = `${config.distFolder}/esmodule`;
         sources.javaScript(config)
             .pipe(gulp.dest(destination), {

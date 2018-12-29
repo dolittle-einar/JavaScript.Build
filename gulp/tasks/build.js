@@ -8,6 +8,7 @@ import path from 'path';
 import { getCleanTask } from './clean';
 import { transpile } from './transpile';
 import { getEsmodulesTask } from './esmodules';
+import { Context } from '../Context';
 
 let moduleTypes = [
     'commonjs',
@@ -16,17 +17,18 @@ let moduleTypes = [
     'systemjs'
 ];
 
-function getBuildTasks(root) {
-    let tasks = moduleTypes.map(module => transpile.createTask(module, root));
+function getBuildTasks(context) {
+    let tasks = moduleTypes.map(module => transpile.createTask(module, context));
     return tasks
 }
 
 function getAllBuildTasksFor(root) {
+    let context = new Context(root);
     return gulp.series(
-        getCleanTask(root),
+        getCleanTask(context),
         gulp.parallel(
-            getBuildTasks(root),
-            getEsmodulesTask(root)
+            getBuildTasks(context),
+            getEsmodulesTask(context)
         )   
     );    
 }

@@ -3,16 +3,16 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import rimraf from 'rimraf';
-import { Config } from '../Config';
+import { Context } from '../Context';
 
 /**
  * Factory for creating the clean task
- * @param {string} root 
+ * @param {Context} context Current build context 
  * @returns {Function} The task
  */
-export function getCleanTask(root) {
+export function getCleanTask(context) {
     let task = (done) => {
-        let config = Config.get(root);
+        let config = context.config;
         rimraf(config.distFolder, () => {
             done();
         });
