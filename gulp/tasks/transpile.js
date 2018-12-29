@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import gulp from 'gulp';
+import debug from 'gulp-debug';
 import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import {Context } from '../Context';
@@ -13,6 +14,10 @@ import { sources } from './sources';
  */
 export class transpile {
 
+    /**
+     * Initializes a new instance of {transpile}
+     * @param {string} module Module format the transpilation is for
+     */
     constructor(module) {
         this._module = module;
     }
@@ -31,7 +36,7 @@ export class transpile {
         sources.javaScript(config)
             //.pipe(debug())
             .pipe(sourcemaps.init())
-            .pipe(babel(babelConfig.getConfigForModuleFormat(config, module)))
+            .pipe(babel(babelConfig.getConfigForModuleFormat(module)))
             .pipe(sourcemaps.mapSources((sourcePath, file) => {
                 return `../esmodules/${sourcePath}`
             }))
