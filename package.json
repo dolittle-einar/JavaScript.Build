@@ -7,6 +7,7 @@
     "dependencies": {
         "@babel/cli": "^7.2.0",
         "@babel/core": "^7.2.2",
+        "@babel/register": "^7.0.0",
         "@babel/plugin-proposal-class-properties": "^7.2.1",
         "@babel/plugin-proposal-private-methods": "^7.2.0",
         "@babel/plugin-proposal-decorators": "^7.2.2",
@@ -33,5 +34,12 @@
         "sinon-chai":"^3.3.0",
         "sinon-chai-in-order":"^0.1.0"
     },
-    "devDependencies": {}
+    "devDependencies": {},
+    "eslintConfig": {
+        "parser": "babel-eslint",
+        "parserOptions": {
+            "ecmaVersion": 2018,
+            "sourceType": "module"
+        }   
+    }
 }
