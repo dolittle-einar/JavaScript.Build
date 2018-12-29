@@ -1,11 +1,19 @@
 {
   "plugins": [
-    ["@babel/plugin-proposal-decorators", {"legacy": true}],
+    [
+      "@babel/plugin-proposal-decorators",
+      {
+        "legacy": true
+      }
+    ],
     "@babel/plugin-proposal-class-properties",
+    "@babel/plugin-proposal-private-methods",
     "@babel/plugin-transform-modules-commonjs",
     "@babel/plugin-syntax-flow",
     "@babel/plugin-transform-flow-comments",
-    ["@babel/plugin-transform-runtime",
+    "@babel/plugin-transform-flow-strip-types",
+    [
+      "@babel/plugin-transform-runtime",
       {
         "corejs": false,
         "helpers": false,
@@ -13,5 +21,8 @@
         "useESModules": false
       }
     ]
+  ],
+  "presets": [
+    "@babel/preset-env"
   ]
 }
