@@ -5,12 +5,11 @@
 import yargs from 'yargs';
 import path from 'path';
 
-const _rootFolder = new WeakMap();
-
 /**
  * Represents the configuration for the build
  */
 export class Config {
+    #rootFolder;
 
     /**
      * Initializes a new instance of {config}
@@ -19,14 +18,14 @@ export class Config {
     constructor(rootFolder) {
         rootFolder = path.resolve(rootFolder);
         console.log(`Using root : '${rootFolder}'`);       
-        _rootFolder.set(this,rootFolder);
+        this.#rootFolder = rootFolder;
     }
 
     /**
      * Get the root folder in which we're building
      */
     get rootFolder() {
-        return _rootFolder.get(this);
+        return this.#rootFolder;
     }
 
     /**
