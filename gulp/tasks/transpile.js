@@ -6,10 +6,11 @@ import gulp from 'gulp';
 import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
 import {Context } from '../Context';
-import { babelConfig } from '../babelConfig';
 import { sources } from './sources';
 
-
+/**
+ * Represents a system for dealing with transpilation
+ */
 export class transpile {
 
     constructor(module) {
