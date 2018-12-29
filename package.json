@@ -1,9 +1,13 @@
 {
-    "name": "@dolittle/build",
-    "version": "3.0.0",
+    "name": "@dolittle/build2",
+    "version": "3.0.2",
     "description": "Base build pipeline for Dolittle JavaScript projects",
     "author": "",
     "license": "ISC",
+    "scripts": {
+        "transpile": "rm -rf dist && PACKAGE_DISTRIBUTION=true npx babel . --ignore node_modules,**/for_* -d dist",
+        "prepublish": "yarn run transpile"
+    },
     "dependencies": {
         "@babel/cli": "^7.2.0",
         "@babel/core": "^7.2.2",
@@ -12,13 +16,13 @@
         "@babel/plugin-proposal-private-methods": "^7.2.0",
         "@babel/plugin-proposal-decorators": "^7.2.2",
         "@babel/plugin-syntax-flow": "^7.2.0",
-        "@babel/plugin-transform-flow-strip-types":"^7.2.0",
+        "@babel/plugin-transform-flow-strip-types": "^7.2.0",
         "@babel/plugin-transform-flow-comments": "^7.2.0",
         "@babel/plugin-transform-runtime": "^7.2.0",
-        "@babel/plugin-transform-modules-commonjs":"^7.2.0",
-        "@babel/plugin-transform-modules-amd":"^7.2.0",
-        "@babel/plugin-transform-modules-umd":"^7.2.0",
-        "@babel/plugin-transform-modules-systemjs":"^7.2.0",
+        "@babel/plugin-transform-modules-commonjs": "^7.2.0",
+        "@babel/plugin-transform-modules-amd": "^7.2.0",
+        "@babel/plugin-transform-modules-umd": "^7.2.0",
+        "@babel/plugin-transform-modules-systemjs": "^7.2.0",
         "@babel/preset-env": "^7.2.0",
         "@babel/runtime": "^7.2.0",
         "babel-eslint": "^10.0.1",
@@ -31,8 +35,8 @@
         "karma-phantomjs-launcher": "^1.0.4",
         "mocha": "^5.2.0",
         "sinon": "^7.2.2",
-        "sinon-chai":"^3.3.0",
-        "sinon-chai-in-order":"^0.1.0"
+        "sinon-chai": "^3.3.0",
+        "sinon-chai-in-order": "^0.1.0"
     },
     "devDependencies": {},
     "eslintConfig": {
@@ -40,6 +44,6 @@
         "parserOptions": {
             "ecmaVersion": 2018,
             "sourceType": "module"
-        }   
+        }
     }
 }
