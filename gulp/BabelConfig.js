@@ -25,8 +25,7 @@ export class BabelConfig {
      * @param {string} moduleFormat The module format to get config for
      */
     getConfigForModuleFormat(moduleFormat) {
-        let config = {};
-        Object.assign(config, this.#baseConfig);
+        let config = JSON.parse(JSON.stringify(this.#baseConfig));
         config.plugins.push(`@babel/plugin-transform-modules-${moduleFormat}`);
         return config;
     }
