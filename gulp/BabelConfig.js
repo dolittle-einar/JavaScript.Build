@@ -63,8 +63,8 @@ export class BabelConfig {
 
     getConfigForModuleFormat(moduleFormat) {
         let config = {};
-        Object.assign(config, projectConfig);
-        config.push(`@babel/plugin-transform-modules-${moduleFormat}`);
-        return instance;
+        Object.assign(config, this.#baseConfig);
+        config.plugins.push(`@babel/plugin-transform-modules-${moduleFormat}`);
+        return config;
     }
 }
