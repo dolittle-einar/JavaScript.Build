@@ -3,6 +3,7 @@
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
 import { Config } from './Config';
+import { BabelConfig } from './BabelConfig';
 
 /**
  * Build context
@@ -10,6 +11,7 @@ import { Config } from './Config';
 export class Context {
     #root;
     #config;
+    #babelConfig;
 
     /**
      * Initializes a new instance of {Context}
@@ -26,5 +28,14 @@ export class Context {
     get config() {
         if (!this.#config ) this.#config = Config.get(this.#root);
         return this.#config;
+    }
+
+    /**
+     * Get the current configuration of babel for the given context
+     * @returns {BabelConfig} The babel configuration system
+     */
+    get babelConfig() {
+        if( !this.#babelConfig ) this.#babelConfig = new BabelConfig(this.config);
+        return this.#babelConfig;
     }
 }
