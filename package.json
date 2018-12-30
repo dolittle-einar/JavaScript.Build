@@ -1,6 +1,6 @@
 {
-    "name": "@dolittle/build2",
-    "version": "3.0.24",
+    "name": "@dolittle/build",
+    "version": "3.0.0",
     "description": "Base build pipeline for Dolittle JavaScript projects",
     "author": "",
     "license": "ISC",
