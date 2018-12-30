@@ -176,10 +176,15 @@ the dependencies already added in the package - meaning you'll have to keep thes
 Package.json
 2018
 babel parser
+[To be documented]
 
 ## JSConfig.json
 
+[To be documented]
+
 ## Yarn
+
+[To be documented]
 
 ### Recommended setup with workspaces
 
@@ -203,6 +208,8 @@ babel parser
 [To be documented]
 
 ## Tests
+
+[To be documented]
 
 ### Karma
 
@@ -232,9 +239,11 @@ You'll gain a better developer experience and an improved codebase by sticking w
 ## Mocking
 
 Sinon
+[To be documented]
 
 ## Assertions
 
 Chai
 Sinon Chai
 Sinon Chai in Order
+[To be documented]
