@@ -23,40 +23,6 @@ This project has all its dependencies as regular dependencies, which is why it i
 this package as a developer dependency. The reason for this is to be able to get all the packages down that the
 build pipeline need onto your developer box.
 
-## Transpilation using Babel
-
-This package assumes the use of Babel with presets and plugins added. We're paying attention to what gets through the
-different stages and gets stabilized before we add plugins for them. As a general rule of thumb, we tend to not include
-proposals that has not reached [stage 3](https://github.com/tc39/proposals/blob/master/README.md) from the [standards committee](https://tc39.github.io/).
-Babel has an overview of what is currently in [stage 3](https://babeljs.io/docs/en/babel-preset-stage-3).
-
-Inside this package you'll find a [`.babelrc` file configured](./.babelrc). To start using it, all you need is to create a `.babelrc` file in the
-root of your project and add an `extends` property:
-
-```json
-{
-  "extends": "node_modules/@dolittle/build/.babelrc"
-}
-```
-
-This will then load the predefined configuration from this package and combine it with yours.
-To add plugins or presets, you can simply add a `plugins` or `presets` property with the additional plugins you want:
-
-```json
-{
-  "extends": "node_modules/@dolittle/build/.babelrc",
-  "plugins": [ ... ],
-  "presets": [ ... ]
-}
-```
-
-You'll find the list of available plugins [here](https://babeljs.io/docs/en/plugins) and presets [here](https://babeljs.io/docs/en/presets).
-
-**IMPORTANT**
-
-*This ist just additive - you can't remove already added plugins or presets. To do that, you'll need to drop the `extends` property and
-create everything from scratch.*
-
 ## Gulp
 
 Included in the package is a [Gulp](https://gulpjs.com) based build pipeline. The purpose of the build is to enable an
@@ -170,6 +136,39 @@ the dependencies already added in the package - meaning you'll have to keep thes
 }
 ```
 
+## Transpilation using Babel
+
+This package assumes the use of Babel with presets and plugins added. We're paying attention to what gets through the
+different stages and gets stabilized before we add plugins for them. As a general rule of thumb, we tend to not include
+proposals that has not reached [stage 3](https://github.com/tc39/proposals/blob/master/README.md) from the [standards committee](https://tc39.github.io/).
+Babel has an overview of what is currently in [stage 3](https://babeljs.io/docs/en/babel-preset-stage-3).
+
+Inside this package you'll find a [`.babelrc` file configured](./.babelrc). To start using it, all you need is to create a `.babelrc` file in the
+root of your project and add an `extends` property:
+
+```json
+{
+  "extends": "node_modules/@dolittle/build/.babelrc"
+}
+```
+
+This will then load the predefined configuration from this package and combine it with yours.
+To add plugins or presets, you can simply add a `plugins` or `presets` property with the additional plugins you want:
+
+```json
+{
+  "extends": "node_modules/@dolittle/build/.babelrc",
+  "plugins": [ ... ],
+  "presets": [ ... ]
+}
+```
+
+You'll find the list of available plugins [here](https://babeljs.io/docs/en/plugins) and presets [here](https://babeljs.io/docs/en/presets).
+
+**IMPORTANT**
+
+*This ist just additive - you can't remove already added plugins or presets. To do that, you'll need to drop the `extends` property and
+create everything from scratch.*
 
 ## Eslint
 
