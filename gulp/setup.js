@@ -2,9 +2,14 @@
  *  Copyright (c) Dolittle. All rights reserved.
  *  Licensed under the MIT License. See LICENSE in the project root for license information.
  *--------------------------------------------------------------------------------------------*/
-require('@babel/register');
-var tasks = require('./tasks/index');
+const tasks = require('./tasks/index');
 
-module.exports = function(originalExports) {
+/**
+ * Setup the tasks from this package
+ * @param {object} originalExports The original exports object in the scope of the gulpfile importing this
+ */
+function setup(originalExports) {
     for( var task in tasks ) originalExports[task] = tasks[task];
 }
+
+module.exports = setup;
