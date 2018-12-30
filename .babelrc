@@ -15,13 +15,19 @@
       "@babel/plugin-transform-runtime",
       {
         "corejs": false,
-        "helpers": false,
+        "helpers": true,
         "regenerator": true,
         "useESModules": false
       }
     ]
   ],
   "presets": [
-    "@babel/preset-env"
+    [
+      "@babel/preset-env",
+      {
+        "loose": true,
+        "modules": false
+      }
+    ]
   ]
 }
