@@ -9,7 +9,7 @@ class Sources {
     javaScript(config) {
         let stream = gulp.src([
             `${config.rootFolder}/**/*.js`,
-            `!${config.rootFolder}/**/for_*/*.js`,
+            `!${config.rootFolder}/**/for_*/**/*.js`,
             `!${config.rootFolder}/dist/**/*.js`,
             `!${config.rootFolder}/**/node_modules/**/*.js`
         ], {
