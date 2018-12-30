@@ -78,9 +78,13 @@ function getBuildTasksForAllWorkspaces() {
                 tasks.displayName = `build:${workspace}`;
                 workspaces.push(tasks);
             })
+
+            return gulp.parallel(workspaces);
         }
     }
-    return gulp.parallel(workspaces);
+    return (done) => { 
+        done(); 
+    };
 }
 
 export const build = getAllBuildTasksFor(null);
