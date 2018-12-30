@@ -132,7 +132,7 @@ module.exports = function (wallaby) {
             });
         },
 
-        testFramework: 'jasmine',
+        testFramework: 'mocha',
 
         setup: (w) => {
             window.runPostfix = new Date().toISOString();
