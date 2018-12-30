@@ -47,7 +47,7 @@ with yarn
 $ yarn global add gulp
 ```
 
-Once you've done that, you can start using the build tasks by createing a `gulpfile.js` at the root of your project
+Once you've done that, you can start using the build tasks by creating a `gulpfile.js` at the root of your project
 and add the following:
 
 ```javascript
