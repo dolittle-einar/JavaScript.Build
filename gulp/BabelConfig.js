@@ -9,6 +9,11 @@ import babelConfigLoader from '../babelConfigLoader';
  */
 export class BabelConfig {
     #baseConfig;
+    #moduleConfigs = {
+        'commonjs': {
+            'loose': true
+        }
+    };
 
     /**
      * Initializes a new instance of {babelConfig}
@@ -26,7 +31,12 @@ export class BabelConfig {
      */
     getConfigForModuleFormat(moduleFormat) {
         let config = JSON.parse(JSON.stringify(this.#baseConfig));
-        config.plugins.push(`@babel/plugin-transform-modules-${moduleFormat}`);
+        let pluginName = `@babel/plugin-transform-modules-${moduleFormat}`;
+        if( this.#moduleConfigs.hasOwnProperty(moduleFormat)) {
+            config.plugins.push([pluginName, this.#moduleConfigs[moduleFormat]]);
+        } else {
+            config.plugins.push(pluginName);
+        }
         return config;
     }
 }
