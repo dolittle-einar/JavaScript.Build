@@ -4,6 +4,8 @@
  *--------------------------------------------------------------------------------------------*/
 import babelConfigLoader from '../babelConfigLoader';
 
+const babelConfig = babelConfigLoader(process.cwd());
+
 /**
  * The callback for configuring Wallaby settings
  * @callback Wallaby~settingsCallback
@@ -17,7 +19,6 @@ import babelConfigLoader from '../babelConfigLoader';
  */
 function node(settingsCallback) {
     return (wallaby) => {
-        let babelConfig = babelConfigLoader(process.cwd());
         let babelCompiler = wallaby.compilers.babel(babelConfig);
 
         var settings = {
