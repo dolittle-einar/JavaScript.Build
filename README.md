@@ -61,7 +61,7 @@ You can easily add a **build** script to your package.json file.
 ```json
 "scripts": {
     "build": "gulp build --root [relative path to package.json]",
-    "prepublish": "yarn run build"
+    "prepublish": "yarn build"
 },
 ```
 
@@ -100,7 +100,7 @@ To make it more consistent, you could include it in your `package.json` file:
 Then you can run a build of all the workspaces as follows:
 
 ```shell
-$ yarn run build
+$ yarn build
 ```
 
 **IMPORTANT**
