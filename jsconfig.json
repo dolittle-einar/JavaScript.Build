@@ -1,0 +1,11 @@
+{
+    "compilerOptions": {
+        "target": "es2018",
+        "experimentalDecorators": true,
+        "module": "commonjs"
+    },
+    "exclude": [
+        "node_modules",
+        "jspm_packages"
+    ]
+}
