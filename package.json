@@ -1,6 +1,6 @@
 {
     "name": "@dolittle/build",
-    "version": "4.1.1",
+    "version": "4.3.0",
     "description": "Base build pipeline for Dolittle JavaScript projects",
     "author": "",
     "license": "ISC",
@@ -30,6 +30,7 @@
         "babel-eslint": "^10.0.1",
         "chai": "^4.2.0",
         "chai-as-promised": "^7.1.1",
+        "@dolittle/babel-plugin-transform-no-prototype-alias": "^1.0.0",
         "eslint": "5.10.0",
         "gulp-cli": "~2.0.0",
         "gulp": "^4.0.0",
