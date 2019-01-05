@@ -53,8 +53,8 @@ export default function babelConfigLoader(folderToSearchFrom) {
                 if( fs.existsSync(actualConfigPath)) {
                     console.info(`Using base Babel configuration file '${actualConfigPath}'`);
                     let baseConfig = readConfig(actualConfigPath);
-                    config.plugins.forEach(baseConfig.plugins.push);
-                    config.presets.forEach(baseConfig.presets.push);
+                    config.plugins.forEach(plugin => baseConfig.plugins.push(plugin));
+                    config.presets.forEach(preset => baseConfig.presets.push(preset));
                     delete config.extends;
                     return baseConfig;
                 } else {
