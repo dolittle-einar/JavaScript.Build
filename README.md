@@ -60,7 +60,7 @@ You can easily add a **build** script to your package.json file.
 
 ```json
 "scripts": {
-    "build": "gulp build --root [relative path to package.json]",
+    "build": "gulp build --root [relative path to the folder where package.json is]",
     "prepublish": "yarn build"
 },
 ```
