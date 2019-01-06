@@ -54,20 +54,22 @@ and add the following:
 require('@dolittle/build/dist/gulp/setup')(exports);
 ```
 
+### Build task
+
+The build task is context sensitive and will understand wether or not to build the current **package** or all the **packages**
+discovered in the `workspaces` property - based on a yarn workspaces setup. By just using the `gulp build` command from your terminal,
+it will build correct according to the context.
+
 ### Scripts in package.json
 
-You can easily add a **build** script to your package.json file.
+You can easily add a **build** script to your `package.json` file.
 
 ```json
 "scripts": {
-    "build": "gulp build --root [relative path to the folder where package.json is]",
+    "build": "gulp build",
     "prepublish": "yarn build"
 },
 ```
-
-The `--root` parameter is vital, as the build has been optimized for repositories with potentially multiple packages
-in it and keeping the `gulpfile.js` at the root of the repository. If you have your `gulpfile.js` and `package.json`
-side by side, you can simply use `gulp build --root ./`.
 
 If leveraging [Yarn Workspaces](https://yarnpkg.com/lang/en/docs/workspaces/) you'll have a private `package.json` file
 at the root of your project pointing to the different workspaces. There is a build task for building all the workspaces
@@ -82,7 +84,7 @@ in the `package.json` file. Given you have a `package.json` as follows:
 }
 ```
 
-You can then simply run the `gulp build_all` from the folder of the `package.json` file.
+You can then simply run the `gulp build` from the folder of the `package.json` file.
 To make it more consistent, you could include it in your `package.json` file:
 
 ```json
@@ -92,7 +94,7 @@ To make it more consistent, you could include it in your `package.json` file:
         ...
     ],
     "scripts": {
-        "build": "gulp build_all"
+        "build": "gulp build"
     }
 }
 ```
@@ -185,6 +187,50 @@ babel parser
 
 [To be documented]
 
+### Recommented setup in a package
+
+```json
+{
+  "name": "[name of package]",
+  "version": "[version for the package]",
+  "description": "",
+  "publishConfig": {
+    "access": "public"
+  },
+  "main": "dist/commonjs/index.js",
+  "module": "dist/esmodule/index.js",
+  "jspm": {
+    "registry": "npm",
+    "jspmPackage": true,
+    "format": "amd",
+    "main": "index",
+    "directories": {
+      "dist": "dist/systemjs"
+    },
+    "dependencies": {
+    }
+  },
+  "scripts": {
+    "build": "gulp build",
+    "prepublish": "yarn build"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/..."
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/..."
+  },
+  "homepage": "https://github.com/...",
+  "dependencies": {
+  },
+  "devDependencies": {
+  }
+}
+```
+
 ### Recommended setup with workspaces
 
 ```json
@@ -194,10 +240,10 @@ babel parser
         ...
     ],
     "scripts": {
-        "build": "gulp build_all"
+        "build": "gulp build"
     },
     "devDependencies": {
-        "@dolittle/build": "^3.0.0"
+        "@dolittle/build": "^6.0.0"
     }
 }
 ```

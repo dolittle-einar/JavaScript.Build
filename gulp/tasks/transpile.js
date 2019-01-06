@@ -30,16 +30,33 @@ export class transpile {
      * @param {Function} done 
      */
     task(context, done) {
-        let config = context.config;
-        let babelConfig = context.babelConfig;
         let module = this._module;
+        let config = context.config;
+        let babelConfig = context.babelConfig.getConfigForModuleFormat(module);
         let destination = `${config.distFolder}/${module}`;
 
+        let onError = (error) => {
+            console.error(error);
+            notify.onError({
+                title: 'Gulp',
+                subtitle: 'Failure!',
+                message: `Error: ${error.message}`,
+                sound: "None"
+            })(err);
+    
+            this.emit('end');
+        };
+
         sources.javaScript(config)
-            .pipe(plumber({errorHandler: this.#onError}))
+            .pipe(plumber({errorHandler: onError}))
             //.pipe(debug())
             .pipe(sourcemaps.init())
-            .pipe(babel(babelConfig.getConfigForModuleFormat(module)))
+            .pipe(
+                babel(babelConfig)
+                .on('error', onError)
+            )
+            .on('error', onError)
+            
             .pipe(sourcemaps.mapSources((sourcePath, file) => {
                 return `../esmodules/${sourcePath}`
             }))
@@ -49,7 +66,11 @@ export class transpile {
             }))
             .pipe(gulp.dest(destination, {
                 overwrite: true,
-            }));
+            }))
+            .on('end', () => {
+                done();
+            })
+            ;
         done();
     }
 
@@ -63,16 +84,4 @@ export class transpile {
         task.displayName = `build:${module}`;
         return task;
     }
-
-    #onError(error) {
-        notify.onError({
-            title: 'Gulp',
-            subtitle: 'Failure!',
-            message: `Error: ${error.message}`,
-            sound: "None"
-        })(err);
-
-        this.emit('end');
-    };
-
 }

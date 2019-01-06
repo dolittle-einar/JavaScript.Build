@@ -53,9 +53,10 @@ export default function babelConfigLoader(folderToSearchFrom) {
                 if( fs.existsSync(actualConfigPath)) {
                     console.info(`Using base Babel configuration file '${actualConfigPath}'`);
                     let baseConfig = readConfig(actualConfigPath);
+                    
                     config.plugins.forEach(plugin => baseConfig.plugins.push(plugin));
                     config.presets.forEach(preset => baseConfig.presets.push(preset));
-                    delete config.extends;
+                    delete config.extends;                    
                     return baseConfig;
                 } else {
                     console.error(`Can't locate the base .babelrc file '${actualConfigPath}'`);
