@@ -6,8 +6,10 @@ import gulp from 'gulp';
 // import debug from 'gulp-debug';
 import sourcemaps from 'gulp-sourcemaps';
 import babel from 'gulp-babel';
-import {Context } from '../Context';
+import { Context } from '../Context';
 import { sources } from './sources';
+import plumber from 'gulp-plumber';
+import notify from 'gulp-notify';
 
 /**
  * Represents a system for dealing with transpilation
@@ -34,6 +36,7 @@ export class transpile {
         let destination = `${config.distFolder}/${module}`;
 
         sources.javaScript(config)
+            .pipe(plumber({errorHandler: this.#onError}))
             //.pipe(debug())
             .pipe(sourcemaps.init())
             .pipe(babel(babelConfig.getConfigForModuleFormat(module)))
@@ -50,6 +53,7 @@ export class transpile {
         done();
     }
 
+
     static createTask(module, context) {
         let moduleTranspiler = new transpile(module);
 
@@ -57,6 +61,18 @@ export class transpile {
             moduleTranspiler.task(context, done);
         };
         task.displayName = `build:${module}`;
-        return task;   
+        return task;
     }
+
+    #onError(error) {
+        notify.onError({
+            title: 'Gulp',
+            subtitle: 'Failure!',
+            message: `Error: ${error.message}`,
+            sound: "None"
+        })(err);
+
+        this.emit('end');
+    };
+
 }
