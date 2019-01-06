@@ -57,8 +57,11 @@ function getBuildTasksForCurrentContext() {
 
     let pkg = JSON.parse(fs.readFileSync(currentPackagePath));
     if( pkg.workspaces ) {
+        console.info(`Building the following workspaces`);
+        pkg.workspaces.forEach(workspace => console.info(`==> ${workspace}`));
         return getBuildTasksForAllWorkspaces(pkg.workspaces);
     } else { 
+        console.info(`Building based on package in current directory`);
         return getBuildTasksFor(currentDirectory);
     }
 }
