@@ -6,11 +6,9 @@
         "legacy": true
       }
     ],
+    "@dolittle/babel-plugin-transform-no-prototype-alias",
     "@babel/plugin-proposal-class-properties",
     "@babel/plugin-proposal-private-methods",
-    "@babel/plugin-syntax-flow",
-    "@babel/plugin-transform-flow-comments",
-    "@babel/plugin-transform-flow-strip-types",
     [
       "@babel/plugin-transform-runtime",
       {
