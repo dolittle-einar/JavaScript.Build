@@ -172,6 +172,22 @@ You'll find the list of available plugins [here](https://babeljs.io/docs/en/plug
 *This ist just additive - you can't remove already added plugins or presets. To do that, you'll need to drop the `extends` property and
 create everything from scratch.*
 
+## VSCode IntelliSense
+
+[Visual Studio Code](https://code.visualstudio.com) offers an advanced autocomplete functionality for JavaScript that has a [few rules](https://code.visualstudio.com/docs/editor/intellisense)
+associated with it in order for it to work optimally and give the best result. The [Babel](http://babeljs.io/) transpiler does a couple of things that violates this and
+the autocompletion falls over. This build pipeline does therefor include a couple of [plugins](https://github.com/dolittle-tools/babel-plugins) that Dolittle is offering to remedy
+these issues and is by default included in the [`.babelrc`](./.babelrc) setup here.
+
+In addition to the plugins, it is recommended that any packages built is explicit about not including the JavaScript files other than those that are outputted in the `dist` folder.
+This can easily be done by being explicit in the `package.json` file:
+
+```json
+"files":[
+  "dist"
+]
+```
+
 ## Eslint
 
 Package.json
@@ -227,7 +243,10 @@ babel parser
   "dependencies": {
   },
   "devDependencies": {
-  }
+  },
+  "files":[
+    "dist"
+  ]
 }
 ```
 
