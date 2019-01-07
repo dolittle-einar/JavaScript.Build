@@ -1,6 +1,6 @@
 {
     "name": "@dolittle/build",
-    "version": "6.0.1",
+    "version": "6.0.2",
     "description": "Base build pipeline for Dolittle JavaScript projects",
     "author": "",
     "license": "ISC",
@@ -58,5 +58,13 @@
             "ecmaVersion": 2018,
             "sourceType": "module"
         }
-    }
+    },
+    "files": [
+        "dist",
+        "jsconfig.json",
+        "LICENSE",
+        "README.md",
+        ".eslintrc",
+        ".babelrc"
+    ]
 }
