@@ -8,16 +8,7 @@
     ],
     "@dolittle/babel-plugin-transform-no-prototype-alias",
     "@babel/plugin-proposal-class-properties",
-    "@babel/plugin-proposal-private-methods",
-    [
-      "@babel/plugin-transform-runtime",
-      {
-        "corejs": false,
-        "helpers": false,
-        "regenerator": true,
-        "useESModules": false
-      }
-    ]
+    "@babel/plugin-proposal-private-methods"
   ],
   "presets": [
     [
