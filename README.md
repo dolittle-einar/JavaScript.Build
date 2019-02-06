@@ -150,7 +150,7 @@ root of your project and add an `extends` property:
 
 ```json
 {
-  "extends": "node_modules/@dolittle/build/.babelrc"
+  "extends": "@dolittle/build/.babelrc"
 }
 ```
 
@@ -159,7 +159,7 @@ To add plugins or presets, you can simply add a `plugins` or `presets` property 
 
 ```json
 {
-  "extends": "node_modules/@dolittle/build/.babelrc",
+  "extends": "@dolittle/build/.babelrc",
   "plugins": [ ... ],
   "presets": [ ... ]
 }
