@@ -11,7 +11,8 @@ class Sources {
             `${config.rootFolder}/**/*.js`,
             `!${config.rootFolder}/**/for_*/**/*.js`,
             `!${config.rootFolder}/dist/**/*.js`,
-            `!${config.rootFolder}/**/node_modules/**/*.js`
+            `!${config.rootFolder}/**/node_modules/**/*.js`,
+            `!${config.rootFolder}/**/wwwroot/**/*.js`
         ], {
             base: config.rootFolder
         });
