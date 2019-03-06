@@ -27,6 +27,6 @@ export function getStaticContentTask(context, outputFolder) {
             });
         done();
     };
-    task.displayName = 'build:staticContent';
+    task.displayName = `build:staticContent-${outputFolder}`;
     return task;
 }
