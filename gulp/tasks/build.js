@@ -34,6 +34,7 @@ function getBuildTasksFor(root) {
         getCleanTask(context),
         gulp.parallel(
             getBuildTasks(context),
+            getStaticContentTasks(context),
             getEsmodulesTask(context)
         )   
     );    
