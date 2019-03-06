@@ -18,6 +18,35 @@ class Sources {
         });
         return stream;
     }
+
+    html(config) {
+        let stream = gulp.src([
+            `${config.rootFolder}/**/*.html`,
+            `!${config.rootFolder}/dist/**/*.html`,
+            `!${config.rootFolder}/**/node_modules/**/*.html`,
+            `!${config.rootFolder}/**/wwwroot/**/*.html`
+        ], {
+            base: config.rootFolder
+        });
+        return stream;
+    }
+
+    styles(config) {
+        let stream = gulp.src([
+            `${config.rootFolder}/**/*.css`,
+            `${config.rootFolder}/**/*.scss`,
+            `!${config.rootFolder}/dist/**/*.css`,
+            `!${config.rootFolder}/dist/**/*.scss`,
+            `!${config.rootFolder}/**/node_modules/**/*.css`,
+            `!${config.rootFolder}/**/node_modules/**/*.scss`,
+            `!${config.rootFolder}/**/wwwroot/**/*.css`,
+            `!${config.rootFolder}/**/wwwroot/**/*.scss`
+        ], {
+            base: config.rootFolder
+        });
+        return stream;
+    }
+
 }
 export const sources = new Sources();
 export default sources;

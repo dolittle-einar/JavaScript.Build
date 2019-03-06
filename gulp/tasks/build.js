@@ -8,6 +8,7 @@ import path from 'path';
 import { getCleanTask } from './clean';
 import { transpile } from './transpile';
 import { getEsmodulesTask } from './esmodules';
+import { getStaticContentTask } from './staticContent';
 import { Context } from '../Context';
 
 let moduleTypes = [
@@ -19,6 +20,11 @@ let moduleTypes = [
 
 function getBuildTasks(context) {
     let tasks = moduleTypes.map(module => transpile.createTask(module, context));
+    return tasks
+}
+
+function getStaticContentTasks(context) {
+    let tasks = moduleTypes.map(module => getStaticContentTask(context, module));
     return tasks
 }
 
