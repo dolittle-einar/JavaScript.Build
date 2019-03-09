@@ -132,7 +132,7 @@ function electron(settingsCallback) {
 
             middleware: (app, express) => {
                 var nodeModulesPath = path.join(wallaby.localProjectDir, 'node_modules');
-                app.use('/node_modules', express.static(nodeModulesPath)));
+                app.use('/node_modules', express.static(nodeModulesPath));
                 app.get('/packagemap.json', (req, res) => {
                     res.writeHead(200, {
                         'Content-type': 'application/json'
@@ -169,7 +169,10 @@ function electron(settingsCallback) {
             }
         };
 
-        if( typeof settingsCallback === 'function' ) settingsCallback(settings);
+        if (typeof settingsCallback === 'function') settingsCallback(settings);
 
         return settings;
     };
+}
+
+module.exports = electron;
