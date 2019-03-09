@@ -12,12 +12,19 @@ const babelConfig = babelConfigLoader(process.cwd());
  * @param {object} Settings object
  */
 
+ /**
+ * The setup callback that will be called during setup of Wallaby
+ * @callback Wallaby~setupCallback
+ * @param {object} Settings object
+ */
+
 /**
  * Setup a correct Wallaby settings based on a given convention. All settings are overridable through
  * the settings callback
  * @param {Wallaby~settingsCallback} settingsCallback Callback for working with the wallaby settings object
+ * @param {Wallaby~setupCallback} setupCallback Callback for doing additional setup of Wallaby
  */
-function node(settingsCallback) {
+function node(settingsCallback, setupCallback) {
     return (wallaby) => {
         let babelCompiler = wallaby.compilers.babel(babelConfig);
 
@@ -57,6 +64,8 @@ function node(settingsCallback) {
 
                 let winston = require('winston');
                 global.logger = winston.createLogger({});
+
+                if( typeof setupCallback === 'function') setupCallback();
             }
         };
 
