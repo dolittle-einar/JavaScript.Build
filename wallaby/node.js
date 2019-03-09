@@ -12,11 +12,48 @@ const babelConfig = babelConfigLoader(process.cwd());
  * @param {object} Settings object
  */
 
- /**
- * The setup callback that will be called during setup of Wallaby
- * @callback Wallaby~setupCallback
- * @param {object} Settings object
- */
+/**
+* The setup callback that will be called during setup of Wallaby
+* @callback Wallaby~setupCallback
+* @param {object} Settings object
+*/
+
+function getFunctionBody(func) {
+    var entire = func.toString();
+    var body = entire.substring(entire.indexOf("{") + 1, entire.lastIndexOf("}"));
+    return body;
+}
+
+function getSetupFunction(setupCallback) {
+    var setup = function () {
+        global.expect = chai.expect;
+        var should = chai.should();
+        global.sinon = require('sinon');
+
+        var sinonChai = require('sinon-chai');
+
+        chai.use(sinonChai);
+
+        var sinonChaiInOrder = require('sinon-chai-in-order').default;
+
+        chai.use(sinonChaiInOrder);
+
+        var winston = require('winston');
+
+        global.logger = winston.createLogger({});
+    };
+
+    if (typeof setupCallback === 'function') {
+        var setupBody = getFunctionBody(setup);
+        var setupCallbackBody = getFunctionBody(setupCallback);
+        var combined = setupBody + '\n' + setupCallbackBody;
+        var newFunction = new Function(combined);
+        return newFunction;
+    }
+
+    return setup;
+}
+
 
 /**
  * Setup a correct Wallaby settings based on a given convention. All settings are overridable through
@@ -53,23 +90,10 @@ function node(settingsCallback, setupCallback) {
                 type: 'node'
             },
 
-            setup: () => {
-                global.expect = chai.expect;
-                let should = chai.should();
-                global.sinon = require('sinon');
-                let sinonChai = require('sinon-chai');
-                chai.use(sinonChai);
-                let sinonChaiInOrder = require('sinon-chai-in-order').default;
-                chai.use(sinonChaiInOrder);
-
-                let winston = require('winston');
-                global.logger = winston.createLogger({});
-
-                if( typeof setupCallback === 'function') setupCallback();
-            }
+            setup: getSetupFunction(setupCallback)
         };
 
-        if( typeof settingsCallback === 'function' ) settingsCallback(settings);
+        if (typeof settingsCallback === 'function') settingsCallback(settings);
 
         return settings;
     };
